@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #080b18;
+    --card: #10172a;
+    --cyan: #35f5ff;
+    --green: #39ffb6;
+    --purple: #b26bff;
+    --text: #f2f7ff;
+    --muted: #8493ad;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 30px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(ellipse at top, #142341 0%, transparent 55%),
+        var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+button {
+    font: inherit;
+}
+
+.stopwatch-app {
+    width: 100%;
+    max-width: 650px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.status-dot,
+.live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(23px, 5vw, 37px);
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+
+h1 span {
+    color: var(--cyan);
+    text-shadow: 0 0 20px #35f5ff45;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 17px;
+    margin-top: 8px;
+    letter-spacing: 2px;
+}
+
+.stopwatch-card {
+    padding: clamp(20px, 5vw, 38px);
+    background: linear-gradient(145deg, #131d33, #0c1222);
+    border: 1px solid #35f5ff55;
+    border-radius: 22px;
+    box-shadow:
+        0 0 25px #35f5ff0c,
+        0 0 55px #35f5ff0a,
+        inset 0 0 25px #35f5ff05;
+}
+
+.timer-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.live-dot {
+    background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan);
+}
+
+.timer-display {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin: 30px 0 12px;
+    white-space: nowrap;
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(39px, 10.5vw, 76px);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
+    color: var(--cyan);
+    text-shadow:
+        0 0 12px #35f5ff6b,
+        0 0 35px #35f5ff22;
+}
+
+.colon,
+.decimal {
+    color: #8299b9;
+}
+
+.ms {
+    color: var(--green);
+    font-size: 0.55em;
+    letter-spacing: -1px;
+}
+
+.time-units {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    text-align: center;
+    color: #71829f;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.progress-track {
+    height: 4px;
+    background: #253148;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 30px 0;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--cyan), var(--green));
+    box-shadow: 0 0 12px var(--cyan);
+    transition: width 0.1s linear;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 10px;
+}
+
+.btn {
+    min-height: 48px;
+    padding: 12px 8px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn span {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.btn-start {
+    color: #061519;
+    background: var(--cyan);
+    box-shadow: 0 0 18px #35f5ff24;
+}
+
+.btn-start:hover:not(:disabled) {
+    box-shadow: 0 0 25px #35f5ff65;
+}
+
+.btn-lap {
+    color: var(--green);
+    background: #102b2a;
+    border-color: #39ffb650;
+}
+
+.btn-reset {
+    color: #d0b4ff;
+    background: #211735;
+    border-color: #b26bff45;
+}
+
+.btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.laps-section {
+    margin-top: 28px;
+    padding: 24px;
+    background: #10172a9c;
+    border: 1px solid #263550;
+    border-radius: 16px;
+}
+
+.laps-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.laps-heading h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.lap-count {
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #35f5ff12;
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 20px 10px;
+    color: var(--muted);
+}
+
+.empty-icon {
+    color: var(--cyan);
+    font-size: 35px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+.empty-state p {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.empty-state span {
+    display: block;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.laps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lap-row {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr 1fr;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    background: #162139;
+    border: 1px solid #293750;
+    border-radius: 9px;
+    font-variant-numeric: tabular-nums;
+}
+
+.lap-row span {
+    font-size: 14px;
+}
+
+.lap-number {
+    color: var(--muted);
+}
+
+.lap-time {
+    text-align: right;
+    color: var(--cyan);
+    font-family: 'Orbitron', monospace;
+    font-size: 12px !important;
+}
+
+.lap-diff {
+    text-align: right;
+    color: var(--green);
+    font-size: 12px !important;
+}
+
+.lap-diff.slower {
+    color: #ff9b91;
+}
+
+footer {
+    margin-top: 28px;
+    text-align: center;
+    border-top: 1px solid #263149;
+    padding-top: 18px;
+}
+
+footer p:first-child {
+    font-size: 17px;
+    font-weight: 700;
+    color: #b8c6dd;
+}
+
+footer span {
+    color: var(--green);
+    text-shadow: 0 0 12px #39ffb655;
+}
+
+.footer-note {
+    margin-top: 7px;
+    color: #64748b;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
+
+@media (max-width: 440px) {
+    body {
+        padding: 24px 10px;
+    }
+
+    .stopwatch-card {
+        padding: 23px 13px;
+    }
+
+    .timer-display {
+        margin-top: 28px;
+        letter-spacing: -3px;
+    }
+
+    .btn {
+        font-size: 9px;
+        padding: 10px 4px;
+    }
+
+    .btn span {
+        margin-right: 2px;
+    }
+
+    .laps-section {
+        padding: 16px 12px;
+    }
+
+    .lap-row {
+        padding: 11px 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
